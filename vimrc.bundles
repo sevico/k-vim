@@ -17,7 +17,7 @@ filetype off " required! turn off
 " inspired by spf13, 自定义需要的插件集合
 if !exists('g:bundle_groups')
     " let g:bundle_groups=['python', 'javascript', 'golang', 'php', 'ruby', 'shell', 'markdown', 'html', 'css', 'less', 'coffeescript', 'tmux', 'json', 'beta']
-    let g:bundle_groups=['python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta']
+    let g:bundle_groups=['python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta', 'dl' ] 
 endif
 
 " ----------------------------------------------------------------------------
@@ -35,6 +35,11 @@ if v:version < 800
 else
     Plug 'w0rp/ale'
 endif
+"My Plug
+Plug 'davidhalter/jedi-vim'
+
+
+
 
 " Group dependencies, vim-snippets depends on ultisnips
 " 代码片段快速插入 (snippets中,是代码片段资源,需要学习)
@@ -262,8 +267,21 @@ endif
 
 if count(g:bundle_groups, 'html')
     " ###### emmet HTML complete #########
-    " Plug 'mattn/emmet-vim'
+    Plug 'mattn/emmet-vim'
+    let g:user_emmet_leader_key='<C-y>'
+    imap   <C-y>   <plug>(emmet-expand-abbr)
+    nmap   <C-y>   <plug>(emmet-expand-abbr)
+    vmap   <C-y>   <plug>(emmet-expand-abbr)
 endif
+
+if count(g:bundle_groups, 'dl')
+    Plug 'chiphogg/vim-prototxt'
+endif
+
+
+
+
+
 
 " this is just for beta version
 if count(g:bundle_groups, 'beta')
@@ -431,8 +449,11 @@ endif
     let g:ycm_seed_identifiers_with_syntax=1
     " 回车作为选中
     let g:ycm_key_list_stop_completion = ['<CR>']
+    let g:ycm_add_preview_to_completeopt = 1
+    let g:ycm_autoclose_preview_window_after_completion = 1
+    let g:ycm_autoclose_preview_window_after_insertion = 1
 
-    "let g:ycm_seed_identifiers_with_syntax=1   "语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
+    let g:ycm_seed_identifiers_with_syntax=1   "语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
 
     " 跳转到定义处, 分屏打开
     let g:ycm_goto_buffer_command = 'horizontal-split'
@@ -452,12 +473,30 @@ endif
     endif
 
     " 直接触发自动补全 insert模式下
-    " let g:ycm_key_invoke_completion = '<C-Space>'
+    "let g:ycm_key_invoke_completion = '<C-Space>'
     " 黑名单,不启用
     let g:ycm_filetype_blacklist = {
         \ 'tagbar' : 1,
         \ 'gitcommit' : 1,
         \}
+
+    set conceallevel=2
+set concealcursor=vin
+let g:clang_snippets=1
+let g:clang_conceal_snippets=1
+" The single one that works with clang_complete
+let g:clang_snippets_engine='clang_complete'
+
+" Complete options (disable preview scratch window, longest removed to aways
+" show menu)
+set completeopt=menu,menuone
+
+" Limit popup menu height
+set pumheight=20
+
+" SuperTab completion fall-back 
+let g:SuperTabDefaultCompletionType='<c-x><c-u><c-p>'
+
 " }}}
 
 
@@ -677,7 +716,7 @@ endif
     let g:airline_symbols.linenr = '¶'
     let g:airline_symbols.branch = '⎇'
     " 是否打开tabline
-    " let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#enabled = 1
 " }}}
 
 
@@ -726,6 +765,27 @@ endif
     let g:molokai_original = 1
     let g:rehash256 = 1
 " }}}
+
+
+    " jedi-vim {
+        let g:jedi#auto_vim_configuration = 0
+        let g:jedi#popup_on_dot = 0
+        let g:jedi#popup_select_first = 0
+        let g:jedi#completions_enabled = 0
+        let g:jedi#completions_command = ""
+        let g:jedi#show_call_signatures = "1"
+
+        let g:jedi#goto_assignments_command = "<leader>pa"
+        let g:jedi#goto_definitions_command = "<leader>pd"
+        let g:jedi#documentation_command = "<leader>pk"
+        let g:jedi#usages_command = "<leader>pu"
+        let g:jedi#rename_command = "<leader>pr"
+    " }
+
+
+
+
+
 
 " ################### 快速导航 ###################
 
@@ -893,3 +953,4 @@ endif
 " }}}
 
 "------------------------------------------- end of configs --------------------------------------------
+"
