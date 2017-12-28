@@ -1,10 +1,3 @@
-"==========================================
-" Author:  wklken
-" Version: 9.1
-" Email: wklken@yeah.net
-" BlogPost: http://www.wklken.me
-" ReadMe: README.md
-" Donation: http://www.wklken.me/pages/donation.html
 " Last_modify: 2015-12-15
 " Sections:
 "       -> Initial Plugin 加载插件
@@ -469,7 +462,7 @@ map <leader>tl :tablast<cr>
 
 map <leader>tj :tabnext<cr>
 map <leader>tk :tabprev<cr>
-map <leader>tn :tabnext<cr>
+map <leader>tn :tabnew<cr>
 map <leader>tp :tabprev<cr>
 
 map <leader>te :tabedit<cr>
@@ -657,8 +650,8 @@ endif
 set background=dark
 set t_Co=256
 
-colorscheme solarized
-" colorscheme molokai
+"colorscheme solarized
+colorscheme molokai
 
 
 " 设置标记一列的背景颜色和数字一行颜色一致
@@ -674,4 +667,4 @@ highlight SpellCap term=underline cterm=underline
 highlight clear SpellRare
 highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
-highlight SpellLocal term=underline cterm=underline
+h
