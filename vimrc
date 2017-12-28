@@ -667,4 +667,4 @@ highlight SpellCap term=underline cterm=underline
 highlight clear SpellRare
 highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
-h
+highlight SpellLocal term=underline cterm=underline
