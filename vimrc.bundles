@@ -252,7 +252,8 @@ endif
 if count(g:bundle_groups, 'css')
     " css
     " not work in iterm2 which termianl selection is not xterm-256, and it slow
-    " Plug 'ap/vim-css-color'
+    Plug 'ap/vim-css-color'
+    Plug 'hail2u/vim-css3-syntax'
 
     " 这个有坑, see issue https://github.com/wklken/k-vim/issues/49
     " Plug 'gorodinskiy/vim-coloresque'
@@ -452,6 +453,10 @@ endif
     let g:ycm_add_preview_to_completeopt = 1
     let g:ycm_autoclose_preview_window_after_completion = 1
     let g:ycm_autoclose_preview_window_after_insertion = 1
+    let g:ycm_semantic_triggers =  {
+			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+			\ 'cs,lua,javascript': ['re!\w{2}'],
+			\ }
 
     let g:ycm_seed_identifiers_with_syntax=1   "语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
 
